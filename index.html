@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Karpa Structure | Migration Advisory</title>
+  <title>Karpa Structure Abroad | Migration Advisory</title>
 
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
@@ -16,31 +15,23 @@
       --text-dark: #1f2d2a;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
+      margin: 0;
       font-family: 'Inter', sans-serif;
       color: var(--text-dark);
-      background-color: white;
       line-height: 1.6;
     }
 
     header {
-      background: white;
-      padding: 20px 40px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      padding: 20px 40px;
       border-bottom: 1px solid #eee;
+      background: white;
     }
 
     header h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 22px;
       color: var(--green-dark);
     }
 
@@ -48,47 +39,45 @@
       margin-left: 20px;
       text-decoration: none;
       color: var(--text-dark);
-      font-weight: 500;
     }
 
     .hero {
-      background: linear-gradient(to right, var(--green-light), #ffffff);
-      padding: 80px 40px;
+      position: relative;
+      height: 90vh;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 40px;
+      color: white;
     }
 
-    .hero-text {
-      max-width: 500px;
+    .hero img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
     }
 
-    .hero h2 {
+    .hero-overlay {
+      background: rgba(0,0,0,0.4);
+      padding: 40px;
+      max-width: 600px;
+      margin-left: 40px;
+      border-radius: 10px;
+    }
+
+    h2 {
       font-family: 'Playfair Display', serif;
       font-size: 42px;
-      margin-bottom: 20px;
-      color: var(--green-dark);
-    }
-
-    .hero p {
-      margin-bottom: 20px;
-      font-size: 16px;
     }
 
     .btn {
       display: inline-block;
+      margin-top: 20px;
       padding: 12px 20px;
       background: var(--green-dark);
       color: white;
       text-decoration: none;
       border-radius: 6px;
-      font-weight: 500;
-    }
-
-    .hero img {
-      width: 400px;
-      border-radius: 10px;
     }
 
     .section {
@@ -99,30 +88,29 @@
 
     .section h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 28px;
-      margin-bottom: 20px;
       color: var(--green-dark);
     }
 
-    .services ul {
-      list-style: none;
+    ul {
+      padding-left: 20px;
     }
 
-    .services li {
-      margin-bottom: 10px;
+    .about img {
+      width: 300px;
+      border-radius: 10px;
+      margin-top: 20px;
     }
 
     .highlight {
       background: var(--green-light);
-      padding: 60px 40px;
       text-align: center;
+      padding: 60px 40px;
     }
 
     footer {
-      background: #f8f8f8;
-      padding: 30px;
       text-align: center;
-      font-size: 14px;
+      padding: 30px;
+      background: #f8f8f8;
     }
   </style>
 </head>
@@ -130,7 +118,7 @@
 <body>
 
 <header>
-  <h1>Karpa Structure</h1>
+  <h1>Karpa Structure Abroad</h1>
   <nav>
     <a href="#services">Services</a>
     <a href="#about">About</a>
@@ -139,43 +127,74 @@
 </header>
 
 <section class="hero">
-  <div class="hero-text">
+  <img src="images/remote1.jpg">
+  <div class="hero-overlay">
     <h2>Building clarity and stability across borders</h2>
-    <p>Karpa Structure provides practical migration support for individuals with limited resources, digital nomads, and those relocating under complex circumstances—helping them build stable and legally compliant lives across borders.</p>
+    <p>
+      Karpa Structure Abroad provides practical migration support for individuals with limited resources, digital nomads, and individuals relocating under difficult circumstances, helping them build stable and legally compliant lives across borders.
+    </p>
     <a href="#contact" class="btn">Book Consultation</a>
+    <a href="#services" class="btn" style="background:#ffffff;color:#000;margin-left:10px;">Learn More</a>
   </div>
-
-  <img src="images/remote1.jpg" alt="Remote work from scenic location">
 </section>
 
-<section class="section services" id="services">
-  <h3>Services</h3>
-  <ul>
-    <li>• Residency and migration pathways</li>
-    <li>• Bureaucracy navigation</li>
-    <li>• Administrative setup abroad (tax, social security, health insurance, legal residency)</li>
-    <li>• Tax and freelancer structuring</li>
-    <li>• Affordable country comparisons</li>
-    <li>• Step-by-step relocation planning</li>
-  </ul>
-</section>
+<section class="section" id="services">
+  <h3>Services Overview</h3>
 
-<section class="section" id="about">
-  <h3>About</h3>
   <p>
-    I created Karpa Structure to help people build stable lives across borders, especially those navigating migration with limited resources or under difficult circumstances. Living internationally has shaped my entire life. I have personally navigated multiple immigration systems, residencies, and administrative frameworks across countries. Professionally, I have worked in legal, regulatory, and policy roles across Europe, supporting EU institutions, private-sector clients, and international organisations. This includes work across all 27 EU Member States, the UK, Ukraine, and Namibia. In parallel, I have operated as a self-employed professional in multiple jurisdictions, giving me direct experience in cross-border freelance work, tax structuring, and administrative setup.
+    Services are tailored on a case-by-case basis following an initial consultation. During this consultation, I assess each client’s individual circumstances, objectives, financial constraints, and preferred destinations.
   </p>
-  <img src="images/AK.jpg" alt="Founder" style="margin-top:20px; width:300px; border-radius:10px;">
+
+  <ul>
+    <li>Residency and migration pathways</li>
+    <li>Bureaucracy navigation</li>
+    <li>Administrative setup abroad (tax, social security, health insurance, legal residency)</li>
+    <li>Tax and freelancer structuring</li>
+    <li>Affordable country comparisons</li>
+    <li>Step-by-step relocation planning</li>
+  </ul>
+
+  <p>
+    Depending on the client’s needs, services may be provided as a one-off consultation, a structured relocation roadmap, or ongoing support.
+  </p>
+
+  <h4>This service is designed for:</h4>
+  <ul>
+    <li>Individuals relocating with limited financial resources</li>
+    <li>Remote workers and freelancers</li>
+    <li>Individuals leaving unstable environments</li>
+    <li>People needing help navigating bureaucracy across borders</li>
+  </ul>
+
+  <p><strong>Note:</strong> Fees are determined after consultation based on complexity.</p>
+</section>
+
+<section class="section about" id="about">
+  <h3>About</h3>
+
+  <p>
+    I created Karpa Structure Abroad to help people build stable lives across borders. Living internationally has shaped my entire life.
+  </p>
+
+  <p>
+    Professionally, I built my career in legal, regulatory, and policy roles across Europe, supporting EU institutions, private-sector clients, and international organisations.
+  </p>
+
+  <p>
+    I have also worked as a self-employed professional across multiple jurisdictions, gaining experience in cross-border freelance work and administrative setup.
+  </p>
+
+  <img src="images/AK.jpg" alt="Founder">
 </section>
 
 <section class="highlight" id="contact">
   <h3>Start Your Journey</h3>
-  <p>Book a consultation to receive tailored guidance based on your situation.</p>
+  <p>Book a consultation to receive tailored guidance.</p>
   <a href="#" class="btn">Book Consultation</a>
 </section>
 
 <footer>
-  © 2026 Karpa Structure. All rights reserved.
+  © 2026 Karpa Structure Abroad. All rights reserved.
 </footer>
 
 </body>
