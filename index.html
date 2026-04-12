@@ -3,255 +3,157 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Karpa Structure Abroad | Migration Advisory</title>
+  <title>K Abroad | Migration Advisory</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --green-light: #e6f0ea;
-      --green-mid: #a8c3b0;
-      --green-dark: #2f5d50;
-      --text-dark: #1f2d2a;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      color: var(--text-dark);
-      line-height: 1.6;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      padding: 20px 40px;
-      border-bottom: 1px solid #eee;
-      background: white;
-    }
-
-    header h1 {
-      font-family: 'Playfair Display', serif;
-      color: var(--green-dark);
-    }
-
-    nav a {
-      margin-left: 20px;
-      text-decoration: none;
-      color: var(--text-dark);
-    }
-
-    .hero {
-      position: relative;
-      height: 90vh;
-      display: flex;
-      align-items: center;
-      color: white;
-    }
-
-    .hero img {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      z-index: -1;
-    }
-
-    .hero-overlay {
-      background: rgba(0,0,0,0.55);
-      padding: 30px;
-      max-width: 520px;
-      margin-left: 40px;
-      border-radius: 12px;
-    }
-
-    h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 42px;
-    }
-
-    .hero p {
-      font-size: 16px;
-      line-height: 1.7;
-      opacity: 0.95;
-    }
-
-    .btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 20px;
-      background: var(--green-dark);
-      color: white;
-      text-decoration: none;
-      border-radius: 6px;
-      margin-right: 10px;
-    }
-
-    .section {
-      padding: 60px 40px;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    .section h3 {
-      font-family: 'Playfair Display', serif;
-      color: var(--green-dark);
-    }
-
-    ul {
-      padding-left: 20px;
-    }
-
-    .about img {
-      width: 300px;
-      border-radius: 10px;
-      margin-top: 20px;
-    }
-
-    .highlight {
-      background: var(--green-light);
-      text-align: center;
-      padding: 60px 40px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 30px;
-      background: #f8f8f8;
-    }
-
-    @media (max-width: 768px) {
-
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-      }
-
-      nav {
-        display: flex;
-        gap: 15px;
-      }
-
-      .hero {
-        height: auto;
-        padding: 40px 20px;
-      }
-
-      .hero-overlay {
-        margin: 0;
-        width: 100%;
-        padding: 25px;
-      }
-
-      h2 {
-        font-size: 32px;
-        line-height: 1.2;
-      }
-
-      .section {
-        padding: 40px 20px;
-      }
-
-      .about img {
-        width: 100%;
-      }
-
-      .btn {
-        display: block;
-        width: 100%;
-        text-align: center;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body>
+<body id="top">
 
 <header>
-  <h1>Karpa Structure Abroad</h1>
+  <div class="logo">
+    <a href="#top" aria-label="Go to top">
+      <img src="Images/logo_without_padding.png" alt="K Abroad Logo">
+    </a>
+  </div>
   <nav>
-    <a href="#services">Services</a>
-    <a href="#about">About</a>
+    <a href="#services">Our Services</a>
+    <a href="#value">Value</a>
+    <a href="#partnerships">Key Partnerships</a>
     <a href="#contact">Contact</a>
   </nav>
 </header>
 
+<!-- HERO -->
 <section class="hero">
-  <img src="images/remote1.jpg">
-  <div class="hero-overlay">
-    <h2>Building clarity and stability across borders</h2>
+  <img src="Images/remote1.jpg" alt="Remote work">
+  <div class="overlay">
+    <p style="opacity:0.85; margin-bottom:10px;"></p>
+    <h2>Practical, structured migration support</h2>
     <p>
-      Karpa Structure Abroad provides practical migration support for individuals with limited resources, digital nomads, and individuals relocating under difficult circumstances, helping them build stable and legally compliant lives across borders.
+      Building stable and legally compliant lives across borders through clear administrative guidance and tailored strategic planning.
     </p>
-    <a href="#contact" class="btn">Book Consultation</a>
-    <a href="#services" class="btn" style="background:#ffffff;color:#000;margin-left:10px;">Learn More</a>
+    <div class="hero-actions">
+      <a href="#contact" class="btn">Book Free Consultation</a>
+      <a href="#services" class="btn">Learn More</a>
+    </div>
   </div>
 </section>
 
 <section class="section" id="services">
-  <h3>Services Overview</h3>
+  <div class="section-intro">
+    <h3>Our Services</h3>
+    <p class="lead">
+      K Abroad provides practical, structured support for individuals navigating life across borders.
+    </p>
+    <p>
+      We offer holistic advice on selecting the most suitable international arrangement for your personal, legal, and financial situation, before formal residency, tax, or administrative processes begin.
+    </p>
+  </div>
 
-  <p>
-    Services are tailored on a case-by-case basis following an initial consultation. During this consultation, I assess each client’s individual circumstances, objectives, financial constraints, and preferred destinations.
+  <div class="feature-grid">
+    <article class="feature-card">
+      <h4>This service is designed for individuals who:</h4>
+      <ul>
+        <li>Want to relocate internationally with complex cross-border considerations</li>
+        <li>Want to relocate due to unstable or conflict-affected environments</li>
+        <li>Work remotely and need a stable, legal and tax base</li>
+        <li>Need clear, practical support navigating international bureaucracy</li>
+      </ul>
+    </article>
+
+    <article class="feature-card">
+      <h4>Key support areas include:</h4>
+      <ul>
+        <li>Evaluating residency and migration pathways</li>
+        <li>Comparing countries to identify practical and cost-efficient options</li>
+        <li>Developing clear, step-by-step relocation roadmaps</li>
+        <li>Advising on cross-border freelancing and tax structuring</li>
+        <li>Setting up legal residency, tax, social security, and health insurance</li>
+      </ul>
+    </article>
+  </div>
+
+  <p class="service-note">
+    Services can be delivered as a one-off consultation, a structured relocation plan, or ongoing support. Each engagement starts with an initial consultation to assess your circumstances, goals, budget, and preferred destinations, then a tailored step-by-step approach is developed.
   </p>
-
-  <ul>
-    <li>Residency and migration pathways</li>
-    <li>Bureaucracy navigation</li>
-    <li>Administrative setup abroad (tax, social security, health insurance, legal residency)</li>
-    <li>Tax and freelancer structuring</li>
-    <li>Affordable country comparisons</li>
-    <li>Step-by-step relocation planning</li>
-  </ul>
-
-  <p>
-    Depending on the client’s needs, services may be provided as a one-off consultation, a structured relocation roadmap, or ongoing support.
-  </p>
-
-  <h4>This service is designed for:</h4>
-  <ul>
-    <li>Individuals relocating with limited financial resources</li>
-    <li>Remote workers and freelancers</li>
-    <li>Individuals leaving unstable environments</li>
-    <li>People needing help navigating bureaucracy across borders</li>
-  </ul>
-
-  <p><strong>Note:</strong> Fees are determined after consultation based on complexity.</p>
 </section>
 
-<section class="section about" id="about">
-  <h3>About</h3>
+<section class="section section-contrast" id="value">
+  <div class="section-intro">
+    <h3>Value</h3>
+    <p>
+      K Abroad goes beyond one-off visa or residency processing by helping you make strategic decisions before committing time and money.
+    </p>
+  </div>
 
-  <p>
-    I created Karpa Structure Abroad to help people build stable lives across borders. Living internationally has shaped my entire life.
-  </p>
-
-  <p>
-    Professionally, I built my career in legal, regulatory, and policy roles across Europe, supporting EU institutions, private-sector clients, and international organisations.
-  </p>
-
-  <p>
-    I have also worked as a self-employed professional across multiple jurisdictions, gaining experience in cross-border freelance work and administrative setup.
-  </p>
-
-  <img src="images/AK.jpg" alt="Founder">
+  <div class="value-grid">
+    <article class="value-card">
+      <h4>Strategic, not transactional</h4>
+      <p>Guidance before applications, not only paperwork execution.</p>
+    </article>
+    <article class="value-card">
+      <h4>Independent and global</h4>
+      <p>Not tied to any single country, programme, or provider.</p>
+    </article>
+    <article class="value-card">
+      <h4>Cost-aware approach</h4>
+      <p>Focused on helping you avoid unnecessary fees and missteps.</p>
+    </article>
+    <article class="value-card">
+      <h4>Real cross-border experience</h4>
+      <p>Grounded in both professional and lived international expertise.</p>
+    </article>
+    <article class="value-card">
+      <h4>Access to trusted specialists</h4>
+      <p>An international network is available for complex legal, tax, and regulatory needs.</p>
+    </article>
+  </div>
 </section>
 
+<section class="section" id="partnerships">
+  <div class="section-intro">
+    <h3>Key Partnerships</h3>
+    <p>
+      K Abroad works with trusted international partners to provide clients with specialist expertise whenever needed.
+    </p>
+  </div>
+
+  <article class="partner-card">
+    <a href="https://d-w-g.com/" target="_blank" rel="noopener noreferrer" class="partner-logo-link" aria-label="Visit DWG website">
+      <img src="Images/DWGLOGO.svg" alt="DWG NEXT logo" class="partner-logo">
+    </a>
+    <div class="partner-content">
+      <h4>DWG NEXT S.r.l.</h4>
+      <p>
+        A multidisciplinary and multilingual firm with experienced professionals across legal, regulatory, financial, tax, and technical fields. Operating across Europe, the Western Balkans, the Caucasus, Africa, and Southeast Asia, it adds strong specialist support for complex cross-border cases.
+      </p>
+      <a href="https://d-w-g.com/" target="_blank" rel="noopener noreferrer" class="text-link">Visit d-w-g.com</a>
+    </div>
+  </article>
+</section>
+
+<!-- CONTACT -->
 <section class="highlight" id="contact">
-  <h3>Start Your Journey</h3>
-  <p>Book a consultation to receive tailored guidance.</p>
-  <a href="#" class="btn">Book Consultation</a>
+  <h3>Ready to start your journey?</h3>
+  <p>Consultations are conducted online via email and video.</p>
+
+  <div class="cta-group">
+    <a href="https://wa.me/37493994791" class="btn">WhatsApp</a>
+    <a href="mailto:karpa.angelika98@gmail.com" class="btn">Email</a>
+    <a href="https://calendly.com/kabroad" class="btn" target="_blank">Calendly</a>
+  </div>
 </section>
 
 <footer>
-  © 2026 Karpa Structure Abroad. All rights reserved.
+  <p>© 2026 K Abroad. All rights reserved.</p>
+  <p>
+    <a href="https://www.linkedin.com/in/akarpa/" target="_blank">LinkedIn</a> • Operated as a registered Individual Entrepreneur in Armenia
+  </p>
 </footer>
+
+<script src="js/main.js"></script>
 
 </body>
 </html>
