@@ -1,0 +1,64 @@
+backend:
+  name: git-gateway
+  branch: main
+  squash_merges: true
+
+local_backend: true
+
+media_folder: "Images/uploads"
+public_folder: "/Images/uploads"
+
+site_url: "/"
+display_url: "/"
+
+collections:
+  - name: blog
+    label: Blog
+    files:
+      - label: Posts
+        name: posts_data
+        file: content/blog/posts.json
+        format: json
+        fields:
+          - label: Blog posts
+            name: posts
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - label: Title
+                name: title
+                widget: string
+              - label: Slug
+                name: slug
+                widget: string
+                hint: "Use lowercase and hyphens only, for example: relocation-planning-checklist."
+                pattern:
+                  - "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+                  - "Use lowercase letters, numbers, and hyphens only."
+              - label: Published
+                name: published
+                widget: boolean
+                default: true
+              - label: Publish date
+                name: publishDate
+                widget: datetime
+                date_format: YYYY-MM-DD
+                time_format: false
+                format: YYYY-MM-DD
+              - label: Updated date
+                name: updatedDate
+                widget: datetime
+                required: false
+                date_format: YYYY-MM-DD
+                time_format: false
+                format: YYYY-MM-DD
+              - label: Excerpt
+                name: excerpt
+                widget: text
+              - label: Cover image
+                name: coverImage
+                widget: image
+                required: false
+              - label: Body
+                name: body
+                widget: markdown
