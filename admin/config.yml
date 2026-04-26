@@ -55,6 +55,14 @@ collections:
               - label: Excerpt
                 name: excerpt
                 widget: text
+              - label: Category
+                name: category
+                widget: select
+                options:
+                  - Guides for digital nomads
+                  - Case studies
+                  - Policy and legal analysis
+                default: Guides for digital nomads
               - label: Cover image
                 name: coverImage
                 widget: image

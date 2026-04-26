@@ -1,6 +1,11 @@
 (() => {
   const page = document.body.dataset.blogPage;
   const dataPath = document.body.dataset.blogData || "../content/blog/posts.json";
+  const allowedCategories = [
+    "Guides for digital nomads",
+    "Case studies",
+    "Policy and legal analysis",
+  ];
 
   const slugify = (value) =>
     String(value || "")
@@ -61,12 +66,16 @@
     const excerptSource = post?.excerpt || stripMarkdown(body);
     const excerpt = excerptSource.length > 190 ? `${excerptSource.slice(0, 187)}...` : excerptSource;
     const publishDate = post?.publishDate || post?.updatedDate || "";
+    const category = allowedCategories.includes(post?.category)
+      ? post.category
+      : "Guides for digital nomads";
 
     return {
       title,
       slug,
       body,
       excerpt,
+      category,
       published: post?.published !== false,
       publishDate,
       updatedDate: post?.updatedDate || "",
@@ -119,6 +128,12 @@
         .map((post) => {
           const publishDate = formatDate(post.publishDate);
           const dateText = publishDate ? `<p class="blog-meta">${publishDate}</p>` : "";
+          const metaRow = `
+            <div class="blog-meta-row">
+              <span class="blog-category-tag">${escapeHTML(post.category)}</span>
+              ${dateText}
+            </div>
+          `;
           const cover = post.coverImage
             ? `<div class="blog-card-media"><img src="${escapeHTML(post.coverImage)}" alt=""></div>`
             : "";
@@ -127,7 +142,7 @@
             <article class="blog-card">
               ${cover}
               <div class="blog-card-body">
-                ${dateText}
+                ${metaRow}
                 <h3>${escapeHTML(post.title)}</h3>
                 <p>${escapeHTML(post.excerpt)}</p>
                 <a class="blog-card-link" href="./post.html?slug=${encodeURIComponent(post.slug)}">Read article</a>
@@ -146,9 +161,10 @@
   const renderPost = async () => {
     const titleNode = document.querySelector("#post-title");
     const metaNode = document.querySelector("#post-meta");
+    const categoryNode = document.querySelector("#post-category");
     const bodyNode = document.querySelector("#post-body");
     const coverNode = document.querySelector("#post-cover");
-    if (!titleNode || !metaNode || !bodyNode || !coverNode) {
+    if (!titleNode || !metaNode || !categoryNode || !bodyNode || !coverNode) {
       return;
     }
 
@@ -172,6 +188,8 @@
       }
 
       titleNode.textContent = post.title;
+      categoryNode.textContent = post.category;
+      categoryNode.hidden = false;
       const publishLabel = formatDate(post.publishDate);
       const updatedLabel = formatDate(post.updatedDate);
 
