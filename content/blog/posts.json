@@ -1,26 +1,26 @@
 {
   "posts": [
     {
-      "excerpt": "A practical framework for comparing residency options before you commit time, money, and paperwork.",
-      "body": "International relocation decisions are easiest when you separate **strategy** from **paperwork**.\n\n## Start with constraints\nBefore choosing a destination, map your real constraints:\n\n- Budget ceiling for year one\n- Family, school, or health priorities\n- Work model (remote employee, freelancer, founder)\n- Timeline and urgency\n\n## Compare pathways objectively\nShortlist countries, then score each on:\n\n1. Legal residency clarity\n2. Tax exposure and reporting burden\n3. Cost of compliance and setup\n4. Stability and long-term flexibility\n\n## Decide before filing\nA strong strategy means fewer expensive surprises later. In most cases, better planning up front reduces legal and administrative rework after the move.",
-      "coverImage": "Images/remote2.jpg",
-      "updatedDate": "2026-04-24",
-      "slug": "choose-cross-border-residency-strategy",
+      "title": "Prerequisite for Digital Nomads: Stable Residence and Tax Base",
+      "slug": "prerequisite-for-digital-nomads-stable-residence-and-tax-base",
       "published": true,
-      "title": "How to Choose a Cross-Border Residency Strategy",
-      "publishDate": "2026-04-24",
-      "category": "Guides for digital nomads"
+      "publishDate": "2026-05-01",
+      "updatedDate": "2026-05-01",
+      "category": "Guides for digital nomads",
+      "excerpt": "Why digital nomads need a clear tax base and legal residency structure before adopting a fully mobile lifestyle.",
+      "coverImage": "Images/remote2.jpg",
+      "body": "The appeal of the digital nomad lifestyle is geographic freedom, but this flexibility does not extend to tax obligations. Regardless of where work is performed, individuals remain subject to tax systems that require clarity, consistency, and legal grounding.\n\nA recognised tax base, typically tied to a specific jurisdiction and supported by a registered residential address, is therefore not optional. It is a prerequisite for both compliance and long-term mobility.\n\nA stable tax residency provides the framework through which global income is declared, assessed, and, where applicable, relieved through international agreements. Without such a base, digital nomads risk uncertainty over where income should be reported, exposure to overlapping tax claims, and potential penalties.\n\n## Choosing a tax base before mobility\nDigital nomads should not treat tax planning as an afterthought. The choice of where to establish tax residency should be made deliberately before adopting a fully mobile lifestyle.\n\n### Tax residency vs. legal residency\nTax residency and legal residency are connected but not the same. Legal residency refers to your right to live in a country, while tax residency determines where you are obligated to report and pay taxes.\n\n### Treatment of worldwide income\nA central consideration is whether the jurisdiction taxes worldwide income or only locally sourced income. For digital nomads earning from international clients, this distinction is critical.\n\n### Banking and financial infrastructure\nA functional banking setup is essential for receiving income, managing expenses, and demonstrating income flows.\n\n### Residence permits as structural support\nSecuring a residence permit in the same country where tax residency is established provides an additional layer of legal certainty and reduces the risk of challenges by tax authorities.\n\n## How K Abroad can support\nK Abroad supports digital nomads in establishing and maintaining a coherent cross-border setup before and during their transition to a mobile lifestyle, including residency strategy, documentation, and practical compliance steps."
     },
     {
-      "excerpt": "this is only a test",
-      "body": "# **jkbbk**\n\n**kbhk**",
-      "coverImage": "/Images/uploads/globe.png",
-      "updatedDate": "",
-      "slug": "test-1",
-      "published": false,
-      "title": "test 1",
-      "publishDate": "2026-04-26",
-      "category": "Case studies"
+      "title": "Structural Barriers in Third-Country Visa Processing",
+      "slug": "structural-barriers-in-third-country-visa-processing",
+      "published": true,
+      "publishDate": "2026-05-01",
+      "updatedDate": "2026-05-01",
+      "category": "Policy and legal analysis",
+      "excerpt": "A policy-focused look at residency-jurisdiction constraints affecting third-country visa processing for Iranian applicants in Armenia.",
+      "coverImage": "Images/remote3.jpg",
+      "body": "## The case of Iranian applicants in Armenia and Germany's Yerevan embassy route\n\n### Background: why Armenia has become a transit hub\nIranian nationals are increasingly facing structural barriers when attempting to build a life abroad. Armenia is frequently chosen as a transitional base because Iranian citizens do not require a visa for entry.\n\n### Shift to third-country processing\nClosure or severe limitation of visa services at several consulates in Iran has made the German Embassy in Yerevan an alternative channel. This route operates under strict residency-jurisdiction rules and generally requires proof of residency in Armenia for at least six months.\n\n### What counts as legal residency in Armenia\nResidency may be recognized through formal study enrollment, valid work permit, family reunification routes, qualifying family ties, registered business activity, nationality, and other cases defined by law.\n\n### Work permit route: a costly alternative\nIn practice, work-permit-based residency can be expensive and inaccessible for many applicants, especially when all related costs are considered.\n\n### No special agreements: standard consular rules apply\nThere is no broadly documented trilateral exception mechanism for this path. In practice, consular jurisdiction rules remain decisive and applicants must demonstrate primary residence in the embassy's territory.\n\n### Policy gaps and possible solutions\nPotential responses include clearer regional mobility frameworks, emergency or humanitarian routing options where available, and better diplomatic coordination to reduce reliance on third-country residency prerequisites.\n\n## How K Abroad can support navigation\nK Abroad can map and compare alternative migration pathways, monitor diplomatic and consular practice changes, and evaluate feasibility of residency-based third-country application strategies."
     }
   ]
 }
