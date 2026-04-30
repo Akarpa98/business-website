@@ -1,6 +1,42 @@
 (() => {
   const page = document.body.dataset.blogPage;
   const dataPath = document.body.dataset.blogData || "../content/blog/posts.json";
+  const toAbsoluteUrl = (path) => new URL(path, window.location.origin).toString();
+  const setHeadMeta = (id, value) => {
+    const node = document.getElementById(id);
+    if (node && value) {
+      node.setAttribute("content", value);
+    }
+  };
+  const setCanonical = (path) => {
+    const node = document.getElementById("canonical-url");
+    if (node) {
+      node.setAttribute("href", toAbsoluteUrl(path));
+    }
+  };
+  const applySeo = ({ title, description, canonicalPath, imagePath, type = "website" }) => {
+    if (title) {
+      document.title = title;
+      setHeadMeta("og-title", title);
+      setHeadMeta("twitter-title", title);
+    }
+    if (description) {
+      setHeadMeta("meta-description", description);
+      setHeadMeta("og-description", description);
+      setHeadMeta("twitter-description", description);
+    }
+    if (canonicalPath) {
+      const canonical = toAbsoluteUrl(canonicalPath);
+      setCanonical(canonicalPath);
+      setHeadMeta("og-url", canonical);
+    }
+    if (imagePath) {
+      const image = toAbsoluteUrl(imagePath);
+      setHeadMeta("og-image", image);
+      setHeadMeta("twitter-image", image);
+    }
+    setHeadMeta("og-type", type);
+  };
   const allowedCategories = [
     "Guides for digital nomads",
     "Case studies",
@@ -116,6 +152,14 @@
     }
 
     try {
+      applySeo({
+        title: "K Abroad Blog | Migration Insights",
+        description: "Practical migration insights, planning advice, and cross-border strategy notes from K Abroad.",
+        canonicalPath: "/blog/index.html",
+        imagePath: "/Images/remote2.jpg",
+        type: "website",
+      });
+
       const posts = await fetchPosts();
       if (posts.length === 0) {
         if (emptyState) {
@@ -135,7 +179,7 @@
             </div>
           `;
           const cover = post.coverImage
-            ? `<div class="blog-card-media"><img src="${escapeHTML(post.coverImage)}" alt=""></div>`
+            ? `<a class="blog-card-image-link" href="./post.html?slug=${encodeURIComponent(post.slug)}"><div class="blog-card-media"><img src="${escapeHTML(post.coverImage)}" alt=""></div></a>`
             : "";
 
           return `
@@ -143,7 +187,7 @@
               ${cover}
               <div class="blog-card-body">
                 ${metaRow}
-                <h3>${escapeHTML(post.title)}</h3>
+                <h3><a class="blog-card-title-link" href="./post.html?slug=${encodeURIComponent(post.slug)}">${escapeHTML(post.title)}</a></h3>
                 <p>${escapeHTML(post.excerpt)}</p>
                 <a class="blog-card-link" href="./post.html?slug=${encodeURIComponent(post.slug)}">Read article</a>
               </div>
@@ -210,7 +254,14 @@
       }
 
       bodyNode.innerHTML = renderMarkdown(post.body);
-      document.title = `${post.title} | K Abroad Blog`;
+      const postTitle = `${post.title} | K Abroad Blog`;
+      applySeo({
+        title: postTitle,
+        description: post.excerpt || stripMarkdown(post.body).slice(0, 180),
+        canonicalPath: `/blog/post.html?slug=${encodeURIComponent(post.slug)}`,
+        imagePath: post.coverImage || "/Images/remote2.jpg",
+        type: "article",
+      });
     } catch (error) {
       titleNode.textContent = "Unable to load post";
       metaNode.textContent = "";

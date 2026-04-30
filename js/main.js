@@ -1,4 +1,25 @@
 (() => {
+  const toAbsoluteUrl = (path) => new URL(path, window.location.origin).toString();
+  const setHeadMeta = (id, value) => {
+    const node = document.getElementById(id);
+    if (node && value) {
+      node.setAttribute("content", value);
+    }
+  };
+
+  const setCanonical = (path) => {
+    const node = document.getElementById("canonical-url");
+    if (node) {
+      node.setAttribute("href", toAbsoluteUrl(path));
+    }
+  };
+
+  const pagePath = window.location.pathname + window.location.search;
+  setCanonical(pagePath);
+  setHeadMeta("og-url", toAbsoluteUrl(pagePath));
+  setHeadMeta("og-image", toAbsoluteUrl("/Images/remote1.jpg"));
+  setHeadMeta("twitter-image", toAbsoluteUrl("/Images/remote1.jpg"));
+
   const supportsObserver = "IntersectionObserver" in window;
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
