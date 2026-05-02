@@ -144,6 +144,62 @@
     return window.DOMPurify.sanitize(parsed);
   };
 
+  const cleanHeadingText = (value) =>
+    String(value || "")
+      .replace(/^#{1,6}\s+/, "")
+      .replace(/[*_`~]/g, "")
+      .trim()
+      .toLowerCase();
+
+  const splitLongParagraph = (text) => {
+    const sentenceChunks = String(text || "").match(/[^.!?]+[.!?]+|[^.!?]+$/g);
+    if (!sentenceChunks || sentenceChunks.length < 4) {
+      return text;
+    }
+
+    const chunks = [];
+    for (let i = 0; i < sentenceChunks.length; i += 2) {
+      const block = sentenceChunks.slice(i, i + 2).join(" ").trim();
+      if (block) {
+        chunks.push(block);
+      }
+    }
+    return chunks.join("\n\n");
+  };
+
+  const preparePostBody = (body, title) => {
+    const source = String(body || "").replace(/\r\n?/g, "\n").trim();
+    if (!source) {
+      return "";
+    }
+
+    const lines = source.split("\n");
+    const firstLine = lines[0]?.trim() || "";
+    if (cleanHeadingText(firstLine) === cleanHeadingText(title)) {
+      lines.shift();
+      while (lines[0] && lines[0].trim() === "") {
+        lines.shift();
+      }
+    }
+
+    const normalized = lines.join("\n");
+    const blocks = normalized
+      .split(/\n{2,}/)
+      .map((block) => block.trim())
+      .filter(Boolean)
+      .map((block) => {
+        if (/^(#{1,6}\s|[-*]\s|>\s|\d+\.\s)/.test(block)) {
+          return block;
+        }
+        if (block.length > 420) {
+          return splitLongParagraph(block);
+        }
+        return block;
+      });
+
+    return blocks.join("\n\n");
+  };
+
   const renderList = async () => {
     const listRoot = document.querySelector("#blog-list");
     const emptyState = document.querySelector("#blog-empty");
@@ -253,7 +309,7 @@
         coverNode.hidden = true;
       }
 
-      bodyNode.innerHTML = renderMarkdown(post.body);
+      bodyNode.innerHTML = renderMarkdown(preparePostBody(post.body, post.title));
       const postTitle = `${post.title} | K Abroad Blog`;
       applySeo({
         title: postTitle,
