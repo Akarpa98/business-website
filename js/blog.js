@@ -1,6 +1,6 @@
 (() => {
   const page = document.body.dataset.blogPage;
-  const dataPath = document.body.dataset.blogData || "../content/blog/posts.json";
+  const dataPath = document.body.dataset.blogData || "/content/blog/posts.json";
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   document.body.classList.add("blog-page-pending");
   const toAbsoluteUrl = (path) => new URL(path, window.location.origin).toString();
@@ -116,7 +116,7 @@
     if (value.startsWith("http://") || value.startsWith("https://") || value.startsWith("/")) {
       return value;
     }
-    return `../${value.replace(/^\.?\//, "")}`;
+    return `/${value.replace(/^\.?\//, "")}`;
   };
 
   const normalizePost = (post, index) => {
