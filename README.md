@@ -6,7 +6,7 @@ Simple business website for Kabroad.
 This site now includes a static blog system designed for non-technical editing:
 
 - Public blog list: `/blog/index.html`
-- Public post template: `/blog/post.html?slug=...`
+- Public post URLs: `/blog/<slug>/` (rewritten to `/blog/post.html` at runtime)
 - Content source: `/content/blog/posts.json`
 - CMS UI: `/admin/` (Decap CMS)
 

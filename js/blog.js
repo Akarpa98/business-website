@@ -52,6 +52,28 @@
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/^-+|-+$/g, "");
 
+  const buildPostPath = (slug) => `/blog/${encodeURIComponent(slug)}/`;
+
+  const readSlugFromPath = () => {
+    const path = String(window.location.pathname || "").replace(/\/+$/, "");
+    const parts = path.split("/").filter(Boolean);
+    const blogIndex = parts.lastIndexOf("blog");
+    if (blogIndex === -1) {
+      return "";
+    }
+    const segment = parts[blogIndex + 1];
+    if (!segment) {
+      return "";
+    }
+
+    const normalized = segment.toLowerCase();
+    if (normalized === "post.html" || normalized === "index.html") {
+      return "";
+    }
+
+    return slugify(decodeURIComponent(segment));
+  };
+
   const escapeHTML = (value) =>
     String(value || "").replace(/[&<>"']/g, (char) => {
       const map = {
@@ -314,7 +336,7 @@
       applySeo({
         title: "K Abroad Blog | Migration Insights",
         description: "Practical migration insights, planning advice, and cross-border strategy notes from K Abroad.",
-        canonicalPath: "/blog/index.html",
+        canonicalPath: "/blog/",
         imagePath: "/Images/remote2.jpg",
         type: "website",
       });
@@ -339,7 +361,7 @@
             </div>
           `;
           const cover = post.coverImage
-            ? `<a class="blog-card-image-link" href="./post.html?slug=${encodeURIComponent(post.slug)}"><div class="blog-card-media"><img src="${escapeHTML(post.coverImage)}" alt=""></div></a>`
+            ? `<a class="blog-card-image-link" href="${escapeHTML(buildPostPath(post.slug))}"><div class="blog-card-media"><img src="${escapeHTML(post.coverImage)}" alt=""></div></a>`
             : "";
 
           return `
@@ -347,9 +369,9 @@
               ${cover}
               <div class="blog-card-body">
                 ${metaRow}
-                <h3><a class="blog-card-title-link" href="./post.html?slug=${encodeURIComponent(post.slug)}">${escapeHTML(post.title)}</a></h3>
+                <h3><a class="blog-card-title-link" href="${escapeHTML(buildPostPath(post.slug))}">${escapeHTML(post.title)}</a></h3>
                 <p>${escapeHTML(post.excerpt)}</p>
-                <a class="blog-card-link" href="./post.html?slug=${encodeURIComponent(post.slug)}">Read article</a>
+                <a class="blog-card-link" href="${escapeHTML(buildPostPath(post.slug))}">Read article</a>
               </div>
             </article>
           `;
@@ -377,7 +399,8 @@
     }
 
     const params = new URLSearchParams(window.location.search);
-    const slug = slugify(params.get("slug"));
+    const querySlug = slugify(params.get("slug"));
+    const slug = querySlug || readSlugFromPath();
     if (!slug) {
       titleNode.textContent = "Post not found";
       metaNode.textContent = "";
@@ -421,11 +444,14 @@
 
       bodyNode.innerHTML = renderMarkdown(preparePostBody(post.body, post.title));
       document.querySelector("#post-article")?.classList.add("is-loaded");
+      if (querySlug) {
+        window.history.replaceState(window.history.state, "", buildPostPath(post.slug));
+      }
       const postTitle = `${post.title} | K Abroad Blog`;
       applySeo({
         title: postTitle,
         description: post.excerpt || stripMarkdown(post.body).slice(0, 180),
-        canonicalPath: `/blog/post.html?slug=${encodeURIComponent(post.slug)}`,
+        canonicalPath: buildPostPath(post.slug),
         imagePath: post.coverImage || "/Images/remote2.jpg",
         type: "article",
       });
