@@ -37,6 +37,7 @@ header {
   align-items: center;
   padding: 18px 40px;
   border-bottom: 1px solid #ececec;
+  transition: padding 0.28s ease, box-shadow 0.28s ease;
 }
 
 .logo {
@@ -49,6 +50,7 @@ header {
   width: auto;
   object-fit: contain;
   padding: 3px 0;
+  transition: height 0.28s ease;
 }
 
 nav a {
@@ -521,6 +523,9 @@ footer {
     scroll-behavior: auto;
   }
 
+  header,
+  .logo img,
+  header nav,
   nav a,
   .hero img,
   .hero .overlay,
@@ -541,6 +546,7 @@ footer {
     align-items: stretch;
     gap: 10px;
     padding: 10px 14px 12px;
+    box-shadow: 0 1px 0 rgba(25, 63, 46, 0.06);
   }
 
   .logo {
@@ -553,6 +559,11 @@ footer {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
+    overflow: hidden;
+    max-height: 260px;
+    opacity: 1;
+    transform: translateY(0);
+    transition: max-height 0.26s ease, opacity 0.22s ease, transform 0.22s ease, margin-top 0.22s ease;
   }
 
   nav a {
@@ -580,6 +591,24 @@ footer {
 
   .logo img {
     height: 66px;
+  }
+
+  body.mobile-header-collapsed header {
+    gap: 4px;
+    padding: 8px 12px;
+    box-shadow: 0 8px 18px rgba(18, 55, 40, 0.12);
+  }
+
+  body.mobile-header-collapsed .logo img {
+    height: 52px;
+  }
+
+  body.mobile-header-collapsed header nav {
+    max-height: 0;
+    opacity: 0;
+    margin-top: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
   }
 
   .hero {

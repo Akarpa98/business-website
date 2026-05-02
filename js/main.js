@@ -23,6 +23,79 @@
   const supportsObserver = "IntersectionObserver" in window;
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  const setupMobileHeaderCollapse = () => {
+    const header = document.querySelector("header");
+    const nav = header?.querySelector("nav");
+    if (!header || !nav) {
+      return;
+    }
+
+    const mobileQuery = window.matchMedia("(max-width: 768px)");
+    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    const setCollapsed = (shouldCollapse) => {
+      document.body.classList.toggle("mobile-header-collapsed", shouldCollapse);
+    };
+
+    const updateHeaderState = () => {
+      ticking = false;
+      if (!mobileQuery.matches || reducedMotionQuery.matches) {
+        setCollapsed(false);
+        lastScrollY = window.scrollY;
+        return;
+      }
+
+      const currentScrollY = window.scrollY;
+      const scrollDelta = currentScrollY - lastScrollY;
+
+      if (currentScrollY <= 20) {
+        setCollapsed(false);
+      } else if (scrollDelta > 8) {
+        setCollapsed(true);
+      } else if (scrollDelta < -6) {
+        setCollapsed(false);
+      }
+
+      lastScrollY = currentScrollY;
+    };
+
+    const onScroll = () => {
+      if (!mobileQuery.matches || reducedMotionQuery.matches) {
+        return;
+      }
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(updateHeaderState);
+      }
+    };
+
+    const onViewportChange = () => {
+      setCollapsed(false);
+      lastScrollY = window.scrollY;
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    nav.addEventListener("click", () => {
+      if (mobileQuery.matches) {
+        setCollapsed(true);
+      }
+    });
+
+    if (mobileQuery.addEventListener) {
+      mobileQuery.addEventListener("change", onViewportChange);
+      reducedMotionQuery.addEventListener("change", onViewportChange);
+    } else {
+      mobileQuery.addListener(onViewportChange);
+      reducedMotionQuery.addListener(onViewportChange);
+    }
+
+    updateHeaderState();
+  };
+
+  setupMobileHeaderCollapse();
+
   const revealTargets = Array.from(
     document.querySelectorAll(".section-intro, .feature-card, .timeline-wrap, .value-card, .partner-card, .service-note")
   );
