@@ -1,6 +1,8 @@
 (() => {
   const page = document.body.dataset.blogPage;
   const dataPath = document.body.dataset.blogData || "../content/blog/posts.json";
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.body.classList.add("blog-page-pending");
   const toAbsoluteUrl = (path) => new URL(path, window.location.origin).toString();
   const setHeadMeta = (id, value) => {
     const node = document.getElementById(id);
@@ -144,6 +146,88 @@
     return window.DOMPurify.sanitize(parsed);
   };
 
+  const markPageReady = () => {
+    window.requestAnimationFrame(() => {
+      document.body.classList.remove("blog-page-pending");
+      document.body.classList.add("blog-page-ready");
+    });
+  };
+
+  const renderListSkeleton = (listRoot, count = 3) => {
+    const skeletonCards = Array.from({ length: count }, () => {
+      return `
+        <article class="blog-card blog-card-skeleton" aria-hidden="true">
+          <div class="blog-card-media blog-skeleton-block"></div>
+          <div class="blog-card-body">
+            <div class="blog-skeleton-row blog-skeleton-sm"></div>
+            <div class="blog-skeleton-row"></div>
+            <div class="blog-skeleton-row"></div>
+            <div class="blog-skeleton-row blog-skeleton-link"></div>
+          </div>
+        </article>
+      `;
+    }).join("");
+    listRoot.innerHTML = skeletonCards;
+  };
+
+  const animateBlogCardsIn = (listRoot) => {
+    if (prefersReducedMotion) {
+      return;
+    }
+    const cards = Array.from(listRoot.querySelectorAll(".blog-card"));
+    cards.forEach((card, index) => {
+      card.classList.add("blog-card-enter");
+      card.style.setProperty("--card-delay", `${index * 70}ms`);
+    });
+    window.requestAnimationFrame(() => {
+      cards.forEach((card) => card.classList.add("is-visible"));
+    });
+  };
+
+  const enableLinkTransitions = () => {
+    if (prefersReducedMotion) {
+      return;
+    }
+
+    document.addEventListener("click", (event) => {
+      const link = event.target.closest("a[href]");
+      if (!link) {
+        return;
+      }
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+        return;
+      }
+      if (link.target && link.target.toLowerCase() !== "_self") {
+        return;
+      }
+      if (link.hasAttribute("download")) {
+        return;
+      }
+
+      const href = link.getAttribute("href");
+      if (!href || href.startsWith("#")) {
+        return;
+      }
+
+      const url = new URL(link.href, window.location.href);
+      if (url.origin !== window.location.origin) {
+        return;
+      }
+      if (url.pathname === window.location.pathname && url.search === window.location.search && url.hash) {
+        return;
+      }
+      if (!(url.protocol === "http:" || url.protocol === "https:")) {
+        return;
+      }
+
+      event.preventDefault();
+      document.body.classList.add("blog-page-leaving");
+      window.setTimeout(() => {
+        window.location.assign(url.toString());
+      }, 180);
+    });
+  };
+
   const cleanHeadingText = (value) =>
     String(value || "")
       .replace(/^#{1,6}\s+/, "")
@@ -204,10 +288,12 @@
     const listRoot = document.querySelector("#blog-list");
     const emptyState = document.querySelector("#blog-empty");
     if (!listRoot) {
+      markPageReady();
       return;
     }
 
     try {
+      renderListSkeleton(listRoot);
       applySeo({
         title: "K Abroad Blog | Migration Insights",
         description: "Practical migration insights, planning advice, and cross-border strategy notes from K Abroad.",
@@ -221,6 +307,7 @@
         if (emptyState) {
           emptyState.hidden = false;
         }
+        markPageReady();
         return;
       }
 
@@ -253,8 +340,11 @@
         .join("");
 
       listRoot.innerHTML = cards;
+      animateBlogCardsIn(listRoot);
+      markPageReady();
     } catch (error) {
       listRoot.innerHTML = `<p class="blog-error">${escapeHTML(error.message)}</p>`;
+      markPageReady();
     }
   };
 
@@ -265,6 +355,7 @@
     const bodyNode = document.querySelector("#post-body");
     const coverNode = document.querySelector("#post-cover");
     if (!titleNode || !metaNode || !categoryNode || !bodyNode || !coverNode) {
+      markPageReady();
       return;
     }
 
@@ -274,6 +365,7 @@
       titleNode.textContent = "Post not found";
       metaNode.textContent = "";
       bodyNode.innerHTML = "<p>Please return to the blog list and select a post.</p>";
+      markPageReady();
       return;
     }
 
@@ -284,6 +376,7 @@
         titleNode.textContent = "Post not found";
         metaNode.textContent = "";
         bodyNode.innerHTML = "<p>The requested article is unavailable.</p>";
+        markPageReady();
         return;
       }
 
@@ -310,6 +403,7 @@
       }
 
       bodyNode.innerHTML = renderMarkdown(preparePostBody(post.body, post.title));
+      document.querySelector("#post-article")?.classList.add("is-loaded");
       const postTitle = `${post.title} | K Abroad Blog`;
       applySeo({
         title: postTitle,
@@ -318,12 +412,16 @@
         imagePath: post.coverImage || "/Images/remote2.jpg",
         type: "article",
       });
+      markPageReady();
     } catch (error) {
       titleNode.textContent = "Unable to load post";
       metaNode.textContent = "";
       bodyNode.innerHTML = `<p class="blog-error">${escapeHTML(error.message)}</p>`;
+      markPageReady();
     }
   };
+
+  enableLinkTransitions();
 
   if (page === "list") {
     renderList();
