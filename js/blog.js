@@ -153,6 +153,11 @@
     });
   };
 
+  const resetTransitionState = () => {
+    document.body.classList.remove("blog-page-leaving", "blog-page-pending");
+    document.body.classList.add("blog-page-ready");
+  };
+
   const renderListSkeleton = (listRoot, count = 3) => {
     const skeletonCards = Array.from({ length: count }, () => {
       return `
@@ -227,6 +232,18 @@
       }, 180);
     });
   };
+
+  window.addEventListener("pagehide", () => {
+    // Avoid persisting a "leaving" visual state into bfcache snapshots.
+    document.body.classList.remove("blog-page-leaving");
+  });
+
+  window.addEventListener("pageshow", (event) => {
+    if (!event.persisted) {
+      return;
+    }
+    resetTransitionState();
+  });
 
   const cleanHeadingText = (value) =>
     String(value || "")
